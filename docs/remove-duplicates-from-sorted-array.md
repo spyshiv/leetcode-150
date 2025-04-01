@@ -1,0 +1,167 @@
+# 3. Remove Duplicates from Sorted Array
+
+<details>
+  <summary>Problem Statement</summary>
+  <hr>
+  <div><div class="elfjS" data-track-load="description_content"><p>Given an integer array <code>nums</code> sorted in <strong>non-decreasing order</strong>, remove the duplicates <a href="https://en.wikipedia.org/wiki/In-place_algorithm" target="_blank"><strong>in-place</strong></a> such that each unique element appears only <strong>once</strong>. The <strong>relative order</strong> of the elements should be kept the <strong>same</strong>. Then return <em>the number of unique elements in </em><code>nums</code>.</p>
+
+<p>Consider the number of unique elements of <code>nums</code> to be <code>k</code>, to get accepted, you need to do the following things:</p>
+
+<ul>
+	<li>Change the array <code>nums</code> such that the first <code>k</code> elements of <code>nums</code> contain the unique elements in the order they were present in <code>nums</code> initially. The remaining elements of <code>nums</code> are not important as well as the size of <code>nums</code>.</li>
+	<li>Return <code>k</code>.</li>
+</ul>
+
+<p><strong>Custom Judge:</strong></p>
+
+<p>The judge will test your solution with the following code:</p>
+
+<pre>int[] nums = [...]; // Input array
+int[] expectedNums = [...]; // The expected answer with correct length
+
+int k = removeDuplicates(nums); // Calls your implementation
+
+assert k == expectedNums.length;
+for (int i = 0; i &lt; k; i++) {
+    assert nums[i] == expectedNums[i];
+}
+</pre>
+
+<p>If all assertions pass, then your solution will be <strong>accepted</strong>.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<pre><strong>Input:</strong> nums = [1,1,2]
+<strong>Output:</strong> 2, nums = [1,2,_]
+<strong>Explanation:</strong> Your function should return k = 2, with the first two elements of nums being 1 and 2 respectively.
+It does not matter what you leave beyond the returned k (hence they are underscores).
+</pre>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<pre><strong>Input:</strong> nums = [0,0,1,1,1,2,2,3,3,4]
+<strong>Output:</strong> 5, nums = [0,1,2,3,4,_,_,_,_,_]
+<strong>Explanation:</strong> Your function should return k = 5, with the first five elements of nums being 0, 1, 2, 3, and 4 respectively.
+It does not matter what you leave beyond the returned k (hence they are underscores).
+</pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= nums.length &lt;= 3 * 10<sup>4</sup></code></li>
+	<li><code>-100 &lt;= nums[i] &lt;= 100</code></li>
+	<li><code>nums</code> is sorted in <strong>non-decreasing</strong> order.</li>
+</ul>
+</div></div>
+</details>
+
+---
+## Solution
+
+## **Approach:** Two-Pointer Technique
+
+Since the array is already sorted in **non-decreasing** order, all duplicates will be **adjacent**. This allows us to use a two-pointer approach to remove duplicates efficiently in **O(n) time complexity** with **O(1) extra space**.
+
+---
+
+## **Steps:**
+1. **Edge Case:** If `nums` is empty, return `0` since there are no elements to process.
+
+2. **Initialize Pointers:**
+   - `k = 1`: This pointer represents the index where the next unique element should be placed.
+   - Start iterating from index `1` (since the first element is always unique).
+
+3. **Iterate Over the Array:**
+   - Loop from index `1` to `nums.length - 1`.
+   - If `nums[i]` is **not equal** to `nums[i - 1]` (i.e., a new unique element is found):
+     - Assign `nums[i]` to `nums[k]` (move the unique element forward).
+     - Increment `k` (increase the count of unique elements).
+
+4. **Return `k`:** The first `k` elements in `nums` are now unique, and we return this count.
+
+---
+
+## **Example Walkthrough**
+
+### **Example 1:**
+
+**Input:**  
+`nums = [1,1,2]`
+
+**Steps:**
+- `k = 1`
+- `i = 1`: `nums[1] == nums[0]` → Skip
+- `i = 2`: `nums[2] != nums[1]` → Move `nums[2]` to `nums[k]`, `k++`
+  
+**Output:** `k = 2`, `nums = [1,2,_]`
+
+---
+
+### **Example 2:**
+
+**Input:**  
+`nums = [0,0,1,1,1,2,2,3,3,4]`
+
+**Steps:**
+
+| Step | `i` | `nums[i]` | `nums[i] != nums[i - 1]` | `nums[k] = nums[i]` | `k` | Updated `nums`  |
+|------|----|-----------|-------------------|-------------------|----|----------------|
+| Start |  |           |                   |                   | 1  | `[0,0,1,1,1,2,2,3,3,4]` |
+| 1 | 1  | 0         | No                | Skip              | 1  | `[0,0,1,1,1,2,2,3,3,4]` |
+| 2 | 2  | 1         | Yes               | `nums[1] = 1`     | 2  | `[0,1,1,1,1,2,2,3,3,4]` |
+| 3 | 3  | 1         | No                | Skip              | 2  | `[0,1,1,1,1,2,2,3,3,4]` |
+| 4 | 4  | 1         | No                | Skip              | 2  | `[0,1,1,1,1,2,2,3,3,4]` |
+| 5 | 5  | 2         | Yes               | `nums[2] = 2`     | 3  | `[0,1,2,1,1,2,2,3,3,4]` |
+| 6 | 6  | 2         | No                | Skip              | 3  | `[0,1,2,1,1,2,2,3,3,4]` |
+| 7 | 7  | 3         | Yes               | `nums[3] = 3`     | 4  | `[0,1,2,3,1,2,2,3,3,4]` |
+| 8 | 8  | 3         | No                | Skip              | 4  | `[0,1,2,3,1,2,2,3,3,4]` |
+| 9 | 9  | 4         | Yes               | `nums[4] = 4`     | 5  | `[0,1,2,3,4,2,2,3,3,4]` |
+
+**Output:** `k = 5`, `nums = [0,1,2,3,4,_,_,_,_,_]`
+
+---
+
+#### Implementation:
+```javascript
+function removeDuplicates(nums) {
+    if (nums.length === 0) return 0;
+    
+    let k = 1; // Pointer for the unique elements
+    
+    for (let i = 1; i < nums.length; i++) {
+        if (nums[i] !== nums[i - 1]) {
+            nums[k] = nums[i];
+            k++;
+        }
+    }
+    
+    return k;
+}
+```
+
+
+### Example usage:
+```javascript
+let nums = [0,0,1,1,1,2,2,3,3,4];
+let k = removeDuplicates(nums);
+console.log(k, nums.slice(0, k)); // Output: 5, [0,1,2,3,4]
+```
+
+## **Complexity Analysis**
+
+- **Time Complexity:** **O(n)**  
+  - We traverse the array **once**, processing each element only once.
+  
+- **Space Complexity:** **O(1)**  
+  - We modify the array **in-place** without using extra space.
+
+---
+
+## **Final Thoughts**
+
+This two-pointer method is **efficient and optimal** for modifying the array in-place. 🚀
+
+
+[Previous](2.remove-element.md) | [Next](index.md)
