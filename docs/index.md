@@ -1,2 +1,3 @@
-[Page 1](page1.md)
-[Page 2](page2.md)
+# Top Interview 150
+1. [Merge Sorted Array](1.merge-sorted-array.md)
+<br>
