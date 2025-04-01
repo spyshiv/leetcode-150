@@ -1,5 +1,126 @@
-# Page 2
+# 2. Remove Element
 
-This is the content of page 2.
+<details>
+  <summary>Problem Statement</summary>
+  <hr>
+  <div><div class="elfjS" data-track-load="description_content"><p>Given an integer array <code>nums</code> and an integer <code>val</code>, remove all occurrences of <code>val</code> in <code>nums</code> <a href="https://en.wikipedia.org/wiki/In-place_algorithm" target="_blank"><strong>in-place</strong></a>. The order of the elements may be changed. Then return <em>the number of elements in </em><code>nums</code><em> which are not equal to </em><code>val</code>.</p>
 
-[Previous](page1.md) | [Next](page3.md)
+<p>Consider the number of elements in <code>nums</code> which are not equal to <code>val</code> be <code>k</code>, to get accepted, you need to do the following things:</p>
+
+<ul>
+	<li>Change the array <code>nums</code> such that the first <code>k</code> elements of <code>nums</code> contain the elements which are not equal to <code>val</code>. The remaining elements of <code>nums</code> are not important as well as the size of <code>nums</code>.</li>
+	<li>Return <code>k</code>.</li>
+</ul>
+
+<p><strong>Custom Judge:</strong></p>
+
+<p>The judge will test your solution with the following code:</p>
+
+<pre>int[] nums = [...]; // Input array
+int val = ...; // Value to remove
+int[] expectedNums = [...]; // The expected answer with correct length.
+                            // It is sorted with no values equaling val.
+
+int k = removeElement(nums, val); // Calls your implementation
+
+assert k == expectedNums.length;
+sort(nums, 0, k); // Sort the first k elements of nums
+for (int i = 0; i &lt; actualLength; i++) {
+    assert nums[i] == expectedNums[i];
+}
+</pre>
+
+<p>If all assertions pass, then your solution will be <strong>accepted</strong>.</p>
+
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
+
+<pre><strong>Input:</strong> nums = [3,2,2,3], val = 3
+<strong>Output:</strong> 2, nums = [2,2,_,_]
+<strong>Explanation:</strong> Your function should return k = 2, with the first two elements of nums being 2.
+It does not matter what you leave beyond the returned k (hence they are underscores).
+</pre>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<pre><strong>Input:</strong> nums = [0,1,2,2,3,0,4,2], val = 2
+<strong>Output:</strong> 5, nums = [0,1,4,0,3,_,_,_]
+<strong>Explanation:</strong> Your function should return k = 5, with the first five elements of nums containing 0, 0, 1, 3, and 4.
+Note that the five elements can be returned in any order.
+It does not matter what you leave beyond the returned k (hence they are underscores).
+</pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>0 &lt;= nums.length &lt;= 100</code></li>
+	<li><code>0 &lt;= nums[i] &lt;= 50</code></li>
+	<li><code>0 &lt;= val &lt;= 100</code></li>
+</ul>
+</div></div>
+</details>
+
+
+---
+## Solution
+
+### Algorithm Explanation
+
+The goal is to remove all occurrences of `val` from the array `nums` in-place and return the count of remaining elements. The algorithm should ensure that the first `k` elements of `nums` contain only elements not equal to `val`. The order of elements can be changed, and elements beyond `k` are not relevant.
+
+#### **Approach: Two-Pointer Technique**
+1. **Use Two Pointers:**
+   - A `writeIndex` pointer to track where the next non-`val` element should be placed.
+   - A `readIndex` pointer to iterate over the array.
+
+2. **Traverse the Array (`readIndex`):**
+   - If `nums[readIndex]` is not equal to `val`, move it to `nums[writeIndex]` and increment `writeIndex`.
+
+3. **Final Step:**
+   - Return `writeIndex`, which represents the count of elements that are not equal to `val`.
+
+### **Time & Space Complexity**
+- **Time Complexity:** \(O(n)\) (We iterate through the array once)
+- **Space Complexity:** \(O(1)\) (No extra space is used apart from variables)
+
+---
+
+### **JavaScript Implementation**
+```javascript
+function removeElement(nums, val) {
+    let writeIndex = 0; // Pointer to place the next valid element
+
+    for (let readIndex = 0; readIndex < nums.length; readIndex++) {
+        if (nums[readIndex] !== val) {
+            nums[writeIndex] = nums[readIndex];
+            writeIndex++;
+        }
+    }
+    
+    return writeIndex;
+}
+```
+
+### **Example Usage**
+```javascript
+let nums1 = [3, 2, 2, 3];
+let val1 = 3;
+let k1 = removeElement(nums1, val1);
+console.log(k1, nums1.slice(0, k1)); // Output: 2, [2, 2]
+
+let nums2 = [0, 1, 2, 2, 3, 0, 4, 2];
+let val2 = 2;
+let k2 = removeElement(nums2, val2);
+console.log(k2, nums2.slice(0, k2)); // Output: 5, [0, 1, 3, 0, 4]
+```
+
+### How the Code Works
+
+1. **Initialize** `writeIndex = 0` (starting position for non-`val` elements).
+2. **Loop through the array** (`readIndex` from 0 to `nums.length - 1`):
+   - If `nums[readIndex] !== val`, copy `nums[readIndex]` to `nums[writeIndex]` and increment `writeIndex`.
+3. **Return** `writeIndex`, which represents the new length of the filtered array.
+
+
+[Previous](1.merge-sorted-array.md) | [Next](page3.md)
