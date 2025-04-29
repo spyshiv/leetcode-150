@@ -6,4 +6,10 @@
 2. [Remove Element](2.remove-element.md)
 3. [Remove Duplicates from Sorted Array](3.remove-duplicates-from-sorted-array.md)
 4. [Remove Duplicates from Sorted Array II](4.remove-duplicates-from-sorted-array-ii.md)
-<br>
+<be>
+
+
+## HashMap
+- [Ransom Note](hasmap/1.randsom-note.md)
+
+
