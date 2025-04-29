@@ -10,6 +10,6 @@
 
 
 ## HashMap
-- [Ransom Note](hasmap/1.randsom-note.md)
+- [Ransom Note](hashmap/1.randsom-note.md)
 
 
