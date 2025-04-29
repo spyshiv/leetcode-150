@@ -11,5 +11,6 @@
 
 ## HashMap
 - [Ransom Note](hashmap/1.randsom-note.md)
+- [Isomorphic Strings](hashmap/2.isomorphic-strings.md)
 
 
