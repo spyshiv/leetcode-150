@@ -12,5 +12,7 @@
 
 - [Ransom Note](hashmap/1.ransom-note.md)
 - [Isomorphic Strings](hashmap/2.isomorphic-strings.md)
+- [Word Pattern](hashmap/3.word-pattern.md)
+- [Valid Anagram](hashmap/4.valid-anagram.md)
 
 
