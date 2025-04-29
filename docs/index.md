@@ -14,5 +14,6 @@
 - [Isomorphic Strings](hashmap/2.isomorphic-strings.md)
 - [Word Pattern](hashmap/3.word-pattern.md)
 - [Valid Anagram](hashmap/4.valid-anagram.md)
+- [Group Anagrams](hashmap/5.group-anagrams.md)
 
 
