@@ -2,11 +2,10 @@
 
 ## Array / String
 
-- [Merge Sorted Array](1.merge-sorted-array.md)
-- [Remove Element](2.remove-element.md)
-- [Remove Duplicates from Sorted Array](3.remove-duplicates-from-sorted-array.md)
-- [Remove Duplicates from Sorted Array II](4.remove-duplicates-from-sorted-array-ii.md)
-
+- [Merge Sorted Array](array-string/1.merge-sorted-array.md)
+- [Remove Element](array-string/2.remove-element.md)
+- [Remove Duplicates from Sorted Array](array-string/3.remove-duplicates-from-sorted-array.md)
+- [Remove Duplicates from Sorted Array II](array-string/4.remove-duplicates-from-sorted-array-ii.md)
 
 ## HashMap
 
@@ -16,5 +15,3 @@
 - [Valid Anagram](hashmap/4.valid-anagram.md)
 - [Group Anagrams](hashmap/5.group-anagrams.md)
 - [Two Sum](hashmap/6.two-sum.md)
-
-
