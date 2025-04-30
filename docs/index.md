@@ -15,5 +15,6 @@
 - [Word Pattern](hashmap/3.word-pattern.md)
 - [Valid Anagram](hashmap/4.valid-anagram.md)
 - [Group Anagrams](hashmap/5.group-anagrams.md)
+- [Two Sum](hashmap/6.two-sum.md)
 
 
